@@ -1,0 +1,21 @@
+{
+  "name": "typescript-task-manager",
+  "version": "1.0.0",
+  "description": "A sample TypeScript task manager app demonstrating types, interfaces, classes, generics, and more.",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "jasmine-core": "^5.7.1",
+    "karma": "^6.4.4",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-commonjs": "^1.0.0",
+    "karma-jasmine": "^5.1.0",
+    "karma-typescript": "^5.5.4",
+    "karma-typescript-preprocessor": "^0.4.0",
+    "typescript": "^5.8.3"
+  }
+}
