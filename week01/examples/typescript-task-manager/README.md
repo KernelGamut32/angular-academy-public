@@ -1,11 +1,10 @@
 # TypeScript Task Manager
 
-This is a sample TypeScript project demonstrating key features of the language including types, interfaces, classes, generics, and unit testing with Jasmine/Karma.
+This is a sample TypeScript project demonstrating key features of the language including types, interfaces, classes, and generics.
 
 ## 📦 Prerequisites
 - Node.js and npm
 - TypeScript (`npm install -g typescript`)
-- Chrome (for Karma testing)
 
 ## 📁 Install Dependencies
 ```bash
@@ -22,12 +21,6 @@ npm run build
 npm start
 ```
 
-## 🧪 Run Unit Tests
-```bash
-npx karma start
-```
-
 ## 📂 Project Structure
 - `TaskImpl.ts`, `TaskManager.ts`, `types.ts`: App logic
 - `main.ts`: Entry point
-- `spec/TaskImpl.spec.ts`: Unit tests for TaskImpl
