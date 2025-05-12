@@ -1,0 +1,17 @@
+<h2>{{ isEdit ? "Edit" : "New" }} Presenter</h2>
+<form (ngSubmit)="save()">
+  <label>
+    Name:
+    <input [(ngModel)]="presenter.name" name="name" required />
+  </label>
+  <br />
+  <label>
+    Bio:
+    <input [(ngModel)]="presenter.bio" name="bio" required />
+  </label>
+  <br />
+  <button type="submit">{{ isEdit ? "Update" : "Create" }}</button>
+  <button type="button" (click)="router.navigate(['/presenters'])">
+    Cancel
+  </button>
+</form>

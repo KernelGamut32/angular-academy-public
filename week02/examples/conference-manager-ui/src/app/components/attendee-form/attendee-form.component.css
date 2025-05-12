@@ -1,0 +1,8 @@
+.attendee-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.attendee-form > * {
+  width: 100%;
+}

@@ -1,0 +1,16 @@
+<h2>Presenters</h2>
+<button (click)="router.navigate(['/presenters/new'])">+ New</button>
+<ul>
+  @for (presenter of presenters; track presenter.id) {
+  <li>
+    {{ presenter.name }} ({{ presenter.bio }})
+    <button (click)="router.navigate(['/presenters', presenter.id])">
+      View
+    </button>
+    <button (click)="router.navigate(['/presenters', presenter.id, 'edit'])">
+      Edit
+    </button>
+    <button (click)="delete(presenter.id!)">Delete</button>
+  </li>
+  }
+</ul>

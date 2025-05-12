@@ -1,0 +1,10 @@
+@if (attendee) {
+<mat-card>
+  <h2>{{ attendee.name }}</h2>
+  <p><strong>Email:</strong> {{ attendee.email }}</p>
+  <button mat-raised-button (click)="router.navigate(['/attendees', attendee.id, 'edit'])">
+    Edit
+  </button>
+  <button mat-raised-button (click)="router.navigate(['/attendees'])">Back</button>
+</mat-card>
+}

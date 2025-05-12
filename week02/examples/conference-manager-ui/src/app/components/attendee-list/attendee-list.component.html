@@ -1,0 +1,14 @@
+<h2>Attendees</h2>
+<button mat-raised-button (click)="router.navigate(['/attendees/new'])">+ New</button>
+<ul>
+  @for (attendee of attendees; track attendee.id) {
+  <mat-list-item>
+    {{ attendee.name }} ({{ attendee.email }})
+    <button mat-raised-button (click)="router.navigate(['/attendees', attendee.id])">View</button>
+    <button mat-raised-button (click)="router.navigate(['/attendees', attendee.id, 'edit'])">
+      Edit
+    </button>
+    <button mat-raised-button (click)="delete(attendee.id!)">Delete</button>
+  </mat-list-item>
+  }
+</ul>

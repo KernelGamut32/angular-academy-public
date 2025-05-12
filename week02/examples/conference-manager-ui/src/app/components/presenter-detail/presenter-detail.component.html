@@ -1,0 +1,10 @@
+@if (presenter) {
+<div>
+  <h2>{{ presenter.name }}</h2>
+  <p><strong>About:</strong> {{ presenter.bio }}</p>
+  <button (click)="router.navigate(['/presenters', presenter.id, 'edit'])">
+    Edit
+  </button>
+  <button (click)="router.navigate(['/presenters'])">Back</button>
+</div>
+}

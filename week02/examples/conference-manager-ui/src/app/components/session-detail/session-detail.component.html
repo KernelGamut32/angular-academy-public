@@ -1,0 +1,49 @@
+@if (session) {
+<div>
+  <h2>{{ session.title }}</h2>
+  <p>{{ session.description }}</p>
+  <p>
+    <strong>When:</strong>
+    {{ session.startTime | date : "short" }} —
+    {{ session.endTime | date : "short" }}
+  </p>
+
+  <h3>Attendees</h3>
+  <ul>
+    @for (attendee of session.attendees; track attendee.id) {
+    <li>{{ attendee.name }} ({{ attendee.email }})</li>
+    }
+  </ul>
+  <label>
+    Add Attendee:
+    <select [(ngModel)]="selectedAttendee">
+      @for (attendee of allAttendees; track attendee.id) {
+      <option [value]="attendee.id">
+        {{ attendee.name }}
+      </option>
+      }
+    </select>
+    <button (click)="addAttendee()">Add</button>
+  </label>
+
+  <h3>Presenters</h3>
+  <ul>
+    @for (presenter of session.presenters; track presenter.id) {
+    <li>{{ presenter.name }} — {{ presenter.bio }}</li>
+    }
+  </ul>
+  <label>
+    Add Presenter:
+    <select [(ngModel)]="selectedPresenter">
+      @for (presenter of allPresenters; track presenter.id) {
+      <option [value]="presenter.id">
+        {{ presenter.name }}
+      </option>
+      }
+    </select>
+    <button (click)="addPresenter()">Add</button>
+  </label>
+
+  <button (click)="router.navigate(['/sessions'])">Back</button>
+</div>
+}

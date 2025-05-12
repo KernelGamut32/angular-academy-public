@@ -1,0 +1,34 @@
+<h2>{{ isEdit ? "Edit" : "New" }} Session</h2>
+<form (ngSubmit)="save()">
+  <label>
+    Title:
+    <input [(ngModel)]="session.title" name="title" required /> </label
+  ><br />
+  <label>
+    Description:
+    <textarea
+      [(ngModel)]="session.description"
+      name="description"
+    ></textarea></label
+  ><br />
+  <label>
+    Start:
+    <input
+      [(ngModel)]="session.startTime"
+      name="startTime"
+      type="datetime-local"
+      required
+    /> </label
+  ><br />
+  <label>
+    End:
+    <input
+      [(ngModel)]="session.endTime"
+      name="endTime"
+      type="datetime-local"
+      required
+    /> </label
+  ><br />
+  <button type="submit">{{ isEdit ? "Update" : "Create" }}</button>
+  <button type="button" (click)="router.navigate(['/sessions'])">Cancel</button>
+</form>

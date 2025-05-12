@@ -1,0 +1,15 @@
+<h2>{{ isEdit ? "Edit" : "New" }} Attendee</h2>
+<form (ngSubmit)="save()" class="attendee-form">
+  <mat-form-field>
+    <input matInput [(ngModel)]="attendee.name" name="name" placeholder="Name" required />
+  </mat-form-field>
+  <br />
+  <mat-form-field [hideRequiredMarker]="false">
+    <input matInput [(ngModel)]="attendee.email" name="email" type="email" placeholder="Email" required />
+  </mat-form-field>
+  <br />
+  <button mat-raised-button type="submit">{{ isEdit ? "Update" : "Create" }}</button>
+  <button mat-raised-button type="button" (click)="router.navigate(['/attendees'])">
+    Cancel
+  </button>
+</form>

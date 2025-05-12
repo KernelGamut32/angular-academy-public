@@ -1,0 +1,15 @@
+<h2>Sessions</h2>
+<button (click)="router.navigate(['/sessions/new'])">+ New</button>
+<ul>
+  @for (session of sessions; track session.id) {
+  <li>
+    {{ session.title }} ({{ session.startTime | date : "short" }} —
+    {{ session.endTime | date : "short" }})
+    <button (click)="router.navigate(['/sessions', session.id])">View</button>
+    <button (click)="router.navigate(['/sessions', session.id, 'edit'])">
+      Edit
+    </button>
+    <button (click)="delete(session.id!)">Delete</button>
+  </li>
+  }
+</ul>
