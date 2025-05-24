@@ -1,0 +1,17 @@
+.invalid {
+  margin: 5px;
+  color: crimson;
+}
+
+input {
+  margin: 5px;
+}
+
+button {
+  margin: 5px;
+}
+
+.detail-card { max-width: 600px; margin: 24px auto; }
+.full-width { width: 100%; }
+.button-row { display: flex; gap: 8px; margin-top: 16px; }
+.spinner-container { display: flex; justify-content: center; margin: 48px; }

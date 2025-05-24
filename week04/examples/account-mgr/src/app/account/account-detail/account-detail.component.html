@@ -1,0 +1,194 @@
+<mat-card *ngIf="!loading; else loadingTpl" class="detail-card">
+  <form [formGroup]="accountForm" (ngSubmit)="commitChanges()">
+    <input type="hidden" name="id" formControlName="id" />
+    <input type="hidden" name="customerId" formControlName="customerId" />
+    <input type="hidden" name="addressId" formControlName="addressId" />
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Account Number</mat-label>
+      <input
+        matInput
+        formControlName="accountNumber"
+        placeholder="e.g. 12345678"
+      />
+      <mat-error *ngIf="accountForm.get('accountNumber')?.hasError('required')">
+        Account Number is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Customer First Name</mat-label>
+      <input
+        matInput
+        formControlName="customerFirstName"
+        placeholder="Customer First Name"
+      />
+      <mat-error
+        *ngIf="accountForm.get('customerFirstName')?.hasError('required')"
+      >
+        Customer First Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Customer Last Name</mat-label>
+      <input
+        matInput
+        formControlName="customerLastName"
+        placeholder="Customer Last Name"
+      />
+      <mat-error
+        *ngIf="accountForm.get('customerLastName')?.hasError('required')"
+      >
+        Customer Last Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Customer Email Address</mat-label>
+      <input
+        matInput
+        formControlName="customerEmailAddress"
+        placeholder="Customer Email Address"
+      />
+      <mat-error
+        *ngIf="accountForm.get('customerEmailAddress')?.hasError('required')"
+      >
+        Customer Email Address is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Customer Address</mat-label>
+      <input
+        matInput
+        formControlName="customerAddress"
+        placeholder="Customer Address"
+      />
+      <mat-error
+        *ngIf="accountForm.get('customerAddress')?.hasError('required')"
+      >
+        Customer Address is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Customer City</mat-label>
+      <input
+        matInput
+        formControlName="customerCity"
+        placeholder="Customer City"
+      />
+      <mat-error *ngIf="accountForm.get('customerCity')?.hasError('required')">
+        Customer City is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Customer State</mat-label>
+      <input
+        matInput
+        formControlName="customerState"
+        placeholder="Customer State"
+      />
+      <mat-error *ngIf="accountForm.get('customerState')?.hasError('required')">
+        Customer State is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Customer Zip Code</mat-label>
+      <input
+        matInput
+        formControlName="customerZipCode"
+        placeholder="Customer Zip Code"
+      />
+      <mat-error
+        *ngIf="accountForm.get('customerZipCode')?.hasError('required')"
+      >
+        Customer Zip Code is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Current Balance</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="accountBalance"
+        placeholder="0.00"
+      />
+      <mat-hint align="end">{{
+        accountForm.get("accountBalance")?.value | currency
+      }}</mat-hint>
+      <mat-error
+        *ngIf="accountForm.get('accountBalance')?.hasError('required')"
+      >
+        Balance is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      class="full-width"
+      *ngIf="getMode() === 'edit'"
+    >
+      <mat-label>Amount</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="amount"
+        placeholder="0.00"
+      />
+      <mat-hint align="end">{{
+        accountForm.get("amount")?.value | currency
+      }}</mat-hint>
+      <mat-error *ngIf="accountForm.get('amount')?.hasError('required')">
+        Amount is required
+      </mat-error>
+      <mat-error *ngIf="accountForm.get('amount')?.hasError('min')">
+        Amount must be greater than zero
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Button Row -->
+    <div class="button-row">
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        *ngIf="getMode() === 'edit'"
+        (click)="applyDeposit()"
+        [disabled]="accountForm.invalid || accountForm.get('amount')?.value <= 0"
+      >
+        Deposit
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        *ngIf="getMode() === 'edit'"
+        (click)="applyWithdrawal()"
+        [disabled]="accountForm.invalid || accountForm.get('amount')?.value <= 0"
+      >
+        Withdraw
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        *ngIf="getMode() !== 'edit'"
+        [disabled]="accountForm.invalid"
+      >
+        Commit Changes
+      </button>
+      <button mat-button type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</mat-card>
+
+<ng-template #loadingTpl>
+  <div class="spinner-container">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+</ng-template>

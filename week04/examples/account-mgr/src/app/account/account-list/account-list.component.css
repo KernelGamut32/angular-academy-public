@@ -1,0 +1,9 @@
+.full-width-table {
+  width: 100%;
+}
+
+.new-account-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
