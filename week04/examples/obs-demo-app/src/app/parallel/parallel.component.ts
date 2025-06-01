@@ -33,15 +33,9 @@ export class ParallelComponent implements OnInit, OnDestroy {
   }
 
   doWork(): void {
-    this.subscription = forkJoin([
-      this.workerService.doWork(this.taskOneInput, this.taskOneDuration),
-      this.workerService.doWork(this.taskTwoInput, this.taskTwoDuration),
-      this.workerService.doWork(this.taskThreeInput, this.taskThreeDuration)
-    ]).subscribe(results => {
-      this.result1 = results[0];
-      this.result2 = results[1];
-      this.result3 = results[2];
-    });
+    this.workerService.doWork(this.taskOneInput, this.taskOneDuration).subscribe(result => this.result1 = result);
+    this.workerService.doWork(this.taskTwoInput, this.taskTwoDuration).subscribe(result => this.result2 = result);
+    this.workerService.doWork(this.taskThreeInput, this.taskThreeDuration).subscribe(result => this.result3 = result);
   }
 
 }

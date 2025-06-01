@@ -1,0 +1,46 @@
+<div class="container">
+  <h2>Scheduled Classes</h2>
+
+  <button (click)="addClass()" class="btn btn-primary mb-3">
+    Schedule New Class
+  </button>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Section Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th style="width: 200px">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let scheduledClass of scheduledClasses; trackBy: trackByScheduledClassId">
+        <td>{{ scheduledClass.course.title }}</td>
+        <td>{{ scheduledClass.sectionName }}</td>
+        <td>{{ scheduledClass.startDate | date : "yyyy-MM-dd" }}</td>
+        <td>{{ scheduledClass.endDate | date : "yyyy-MM-dd" }}</td>
+        <td>
+          <button (click)="editClass(scheduledClass)" class="btn btn-sm btn-info me-2">
+            Edit
+          </button>
+          <button
+            (click)="deleteClass(scheduledClass)"
+            class="btn btn-sm btn-danger me-2"
+          >
+            Delete
+          </button>
+          <button
+            (click)="manageStudents(scheduledClass)"
+            class="btn btn-sm btn-secondary"
+          >
+            Manage Students
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+</div>

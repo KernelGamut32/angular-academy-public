@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>Courses</h2>
+  <button (click)="addCourse()" class="btn btn-primary mb-3">
+    Add New Course
+  </button>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Code</th>
+        <th>Credits</th>
+        <th style="width: 150px">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses; trackBy: trackByCourseId">
+        <td>{{ course.title }}</td>
+        <td>{{ course.code }}</td>
+        <td>{{ course.credits }}</td>
+        <td>
+          <button (click)="editCourse(course)" class="btn btn-sm btn-info me-2">
+            Edit
+          </button>
+          <button (click)="deleteCourse(course)" class="btn btn-sm btn-danger">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+</div>

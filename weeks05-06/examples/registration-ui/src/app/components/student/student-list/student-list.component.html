@@ -1,0 +1,44 @@
+<div class="container">
+  <h2>Students</h2>
+  <button (click)="addStudent()" class="btn btn-primary mb-3">
+    Add New Student
+  </button>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Date of Birth</th>
+        <th>Status</th>
+        <th style="width: 150px">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students; trackBy: trackByStudentId">
+        <td>{{ student.firstName }}</td>
+        <td>{{ student.lastName }}</td>
+        <td>{{ student.phoneNumber }}</td>
+        <td>{{ student.dateOfBirth | date : "yyyy-MM-dd" }}</td>
+        <td>{{ student.status }}</td>
+        <td>
+          <button
+            (click)="editStudent(student)"
+            class="btn btn-sm btn-info me-2"
+          >
+            Edit
+          </button>
+          <button
+            (click)="deleteStudent(student)"
+            class="btn btn-sm btn-danger"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+</div>

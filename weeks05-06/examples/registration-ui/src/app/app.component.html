@@ -1,0 +1,29 @@
+<!-- src/app/app.component.html -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">Registration UI</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/courses" routerLinkActive="active"
+            >Courses</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/students" routerLinkActive="active"
+            >Students</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/classes" routerLinkActive="active"
+            >Scheduled Classes</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

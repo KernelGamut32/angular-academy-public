@@ -26,7 +26,7 @@ import { MaterialModule } from './material.module';
       InMemoryDataService,
       {
         dataEncapsulation: false,
-        delay: 500    // simulate latency (ms)
+        delay: 750    // simulate latency (ms)
       }
     ),
     
