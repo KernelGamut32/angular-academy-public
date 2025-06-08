@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Student } from '../../../models/student';
 import { StudentService } from '../../../services/student.service';
+import { StudentStatus } from 'src/app/models/student-status';
 
 @Component({
   selector: 'app-student-list',
@@ -11,6 +12,7 @@ import { StudentService } from '../../../services/student.service';
 export class StudentListComponent implements OnInit {
   students: Student[] = [];
   errorMessage = '';
+  studentStatus = StudentStatus;
 
   constructor(private studentService: StudentService, private router: Router) {}
 
@@ -53,5 +55,9 @@ export class StudentListComponent implements OnInit {
 
   trackByStudentId(index: number, student: Student): number {
     return student.id ? student.id : index;
+  }
+
+  getStudentStatus(status: string): string {
+    return this.studentStatus[status as keyof typeof StudentStatus];
   }
 }

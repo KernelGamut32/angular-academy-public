@@ -1,0 +1,99 @@
+<div class="container">
+  <h2>{{ isEditMode ? 'Edit Scheduled Class' : 'Schedule New Class' }}</h2>
+
+  <form [formGroup]="classForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="courseId" class="form-label">Course</label>
+      <select id="courseId" class="form-select" formControlName="courseId">
+        <option [ngValue]="null">-- Select Course --</option>
+        <option *ngFor="let c of allCourses" [ngValue]="c.id">{{ c.title }}</option>
+      </select>
+      <div *ngIf="classForm.get('courseId')?.touched && classForm.get('courseId')?.invalid" class="text-danger">
+        <small>Course is required.</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="sectionName" class="form-label">Section Name</label>
+      <input id="sectionName" type="text" class="form-control" formControlName="sectionName" />
+      <div *ngIf="classForm.get('sectionName')?.touched && classForm.get('sectionName')?.invalid" class="text-danger">
+        <small>Section name is required.</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="startDate" class="form-label">Start Date</label>
+      <input id="startDate" type="date" class="form-control" formControlName="startDate" />
+      <div *ngIf="classForm.get('startDate')?.touched && classForm.get('startDate')?.invalid" class="text-danger">
+        <small>Start date is required.</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="endDate" class="form-label">End Date</label>
+      <input id="endDate" type="date" class="form-control" formControlName="endDate" />
+      <div *ngIf="classForm.get('endDate')?.touched && classForm.get('endDate')?.invalid" class="text-danger">
+        <small>End date is required.</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success me-2" [disabled]="classForm.invalid">
+      {{ isEditMode ? 'Update Class' : 'Create Class' }}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+  </form>
+
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+
+  <!-- Only show registered students / registration controls when editing -->
+  <div *ngIf="isEditMode" class="mt-5">
+    <h3>Registered Students</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th style="width: 120px;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of registeredStudents">
+          <td>{{ s.firstName }}</td>
+          <td>{{ s.lastName }}</td>
+          <td>
+            <button (click)="drop(s.id!)" class="btn btn-sm btn-danger">Drop</button>
+          </td>
+        </tr>
+        <tr *ngIf="registeredStudents.length === 0">
+          <td colspan="4" class="text-center">No students registered yet.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="mt-4">Register a Student</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th style="width: 120px;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of allStudents">
+          <td>{{ s.firstName }}</td>
+          <td>{{ s.lastName }}</td>
+          <td>
+            <button
+              (click)="register(s.id!)"
+              class="btn btn-sm btn-success"
+              [disabled]="isRegistered(s)"
+            >
+              {{ isRegistered(s) ? 'Registered' : 'Register' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

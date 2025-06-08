@@ -21,7 +21,7 @@
         <td>{{ student.lastName }}</td>
         <td>{{ student.phoneNumber }}</td>
         <td>{{ student.dateOfBirth | date : "yyyy-MM-dd" }}</td>
-        <td>{{ student.status }}</td>
+        <td>{{ getStudentStatus(student.status) }}</td>
         <td>
           <button
             (click)="editStudent(student)"

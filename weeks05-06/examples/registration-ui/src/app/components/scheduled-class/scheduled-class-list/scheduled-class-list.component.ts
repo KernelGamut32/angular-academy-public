@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ScheduledClass } from '../../../models/scheduled-class';
 import { ScheduledClassService } from '../../../services/scheduled-class.service';
-import { CourseService } from '../../../services/course.service';
 
 @Component({
   selector: 'app-scheduled-class-list',
@@ -15,7 +14,6 @@ export class ScheduledClassListComponent implements OnInit {
 
   constructor(
     private classService: ScheduledClassService,
-    private courseService: CourseService,
     private router: Router
   ) {}
 
