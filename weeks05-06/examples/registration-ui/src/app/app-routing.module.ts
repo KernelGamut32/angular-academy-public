@@ -6,21 +6,28 @@ import { StudentListComponent } from './components/student/student-list/student-
 import { CourseFormComponent } from './components/course/course-form/course-form.component';
 import { StudentFormComponent } from './components/student/student-form/student-form.component';
 import { ScheduledClassFormComponent } from './components/scheduled-class/scheduled-class-form/scheduled-class-form.component';
+import { AuthGuard } from './services/auth.guard';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/courses', pathMatch: 'full' },
-  
-  { path: 'courses', component: CourseListComponent },
-  { path: 'courses/new', component: CourseFormComponent },
-  { path: 'courses/:id/edit', component: CourseFormComponent },
-  
-  { path: 'students', component: StudentListComponent },
-  { path: 'students/new', component: StudentFormComponent },
-  { path: 'students/:id/edit', component: StudentFormComponent },
 
-  { path: 'classes', component: ScheduledClassListComponent },
-  { path: 'classes/new', component: ScheduledClassFormComponent },
-  { path: 'classes/:id/edit', component: ScheduledClassFormComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent},
+
+  // Protected routes
+  { path: 'courses', component: CourseListComponent, canActivate: [AuthGuard] },
+  { path: 'courses/new', component: CourseFormComponent, canActivate: [AuthGuard] },
+  { path: 'courses/:id/edit', component: CourseFormComponent, canActivate: [AuthGuard] },
+
+  { path: 'students', component: StudentListComponent, canActivate: [AuthGuard] },
+  { path: 'students/new', component: StudentFormComponent, canActivate: [AuthGuard] },
+  { path: 'students/:id/edit', component: StudentFormComponent, canActivate: [AuthGuard] },
+
+  { path: 'classes', component: ScheduledClassListComponent, canActivate: [AuthGuard] },
+  { path: 'classes/new', component: ScheduledClassFormComponent, canActivate: [AuthGuard] },
+  { path: 'classes/:id/edit', component: ScheduledClassFormComponent, canActivate: [AuthGuard] },
 
   // Wildcard route: redirect to courses
   { path: '**', redirectTo: '/courses' },
